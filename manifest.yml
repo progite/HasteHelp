@@ -1,0 +1,13 @@
+modules:
+  'bitbucket:repoMainMenuPage':
+    - key: hello-world-app-hello-world-panel
+      function: main
+      title: Ask For Help
+  function:
+    - key: main
+      handler: index.run
+app:
+  id: ari:cloud:ecosystem::app/ab488a12-525b-43f6-968f-a099bd294917
+permissions:
+  scopes:
+    - read:repository:bitbucket
