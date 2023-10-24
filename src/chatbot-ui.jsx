@@ -16,6 +16,8 @@ import ForgeUI, {
 
 import api, {route} from "@forge/api";
 
+const dblookup = require('./db.jsx');
+
 const ChatBotUI = ()=>{
     const context = useProductContext();
     // useState is a UI kit hook we use to manage the form data in local state
@@ -29,7 +31,7 @@ const ChatBotUI = ()=>{
           .requestBitbucket(route`/2.0/repositories/${workspaceId}/${repositoryId}`);
   
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
   };
   
@@ -46,8 +48,9 @@ const ChatBotUI = ()=>{
     const helpers = [];
     for (let i = 0; i < 2; i++)
       helpers.push(<User accountId="712020:e1e3f592-c9bf-406d-ab75-8aa8ac590e14"/>);
-    
-    setHelperArr(helpers)
+    // console.log(helpers);
+    setHelperArr({helpers});
+    // console.log(helperArr);
   }
 
   // console.log(`Repository full name: ${repository.full_name}`);
@@ -62,12 +65,14 @@ const ChatBotUI = ()=>{
        *    products: ['jira']
        * }
        */
+      var ids = dblookup(formData["userProblem"]);
+      console.log("ID:", ids);
       setFormState(formData);
       setHelperPanel(true);
       findHelpers();
-      console.log(helperArr);
+      // console.log(helperArr);
       // displayHelperPanel = true; //difference between setting values in these two ways
-      console.log(displayHelperPanel);
+      // console.log(displayHelperPanel);
       return false;
     };
   
